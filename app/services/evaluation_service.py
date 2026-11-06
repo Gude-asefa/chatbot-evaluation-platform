@@ -1,13 +1,70 @@
 
+from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
+
 from app.database.connection import SessionLocal
-from app.database.models import Evaluation, Question
+from app.database.models import Evaluation, Question, Submission
 
 
-def save_evaluations(evaluations):
+class AlreadySubmittedError(Exception):
+    """Raised when a device re-submits the same section and language."""
+
+
+def get_submitted_sections(device_id, department):
+    """Return {(section, language)} this device already submitted."""
+    if not device_id:
+        return set()
+
+    session = SessionLocal()
+
+    try:
+        rows = session.execute(
+            select(Submission.section, Submission.language).where(
+                Submission.device_id == device_id,
+                Submission.department == department,
+            )
+        ).all()
+        return {(row.section, row.language) for row in rows}
+
+    finally:
+        session.close()
+
+
+def save_evaluations(
+    evaluations,
+    *,
+    device_id=None,
+    department=None,
+    section=None,
+    language=None,
+):
+    """Save evaluations.
+
+    When device_id is given, a submission lock is recorded in the same
+    transaction so each device can submit a department/section/language
+    combination only once (enforced by a unique constraint).
+    """
     session = SessionLocal()
 
     try:
         records = []
+
+        if device_id:
+            session.add(
+                Submission(
+                    device_id=device_id,
+                    department=department,
+                    section=section,
+                    language=language,
+                )
+            )
+            try:
+                session.flush()
+            except IntegrityError as error:
+                raise AlreadySubmittedError(
+                    f"You have already submitted an evaluation for "
+                    f"{section} ({language})."
+                ) from error
 
         for item in evaluations:
 
@@ -67,6 +124,7 @@ def save_evaluations(evaluations):
                     status=status,
                     comments=str(comments).strip()
                     if comments else None,
+                    session_id=device_id,
                 )
             )
 

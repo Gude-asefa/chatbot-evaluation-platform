@@ -1,0 +1,35 @@
+# Bank of Abyssinia brand theme: black, white and yellow (#F1AB15)
+[theme]
+base = "light"
+primaryColor = "#F1AB15"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F7F5F0"
+textColor = "#111111"
+borderColor = "#E4DFD3"
+linkColor = "#B07A00"
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+headingFontWeights = [700, 700, 600, 600, 600, 600]
+baseRadius = "0.6rem"
+buttonRadius = "0.6rem"
+showWidgetBorder = true
+metricValueFontWeight = 700
+# Keep info callouts on-brand (warm yellow instead of default blue)
+blueBackgroundColor = "#FEF4DC"
+blueTextColor = "#7A5300"
+paddingTop = "1.5rem"
+
+chartCategoricalColors = ["#F1AB15", "#111111", "#9CA3AF", "#B07A00", "#4B5563", "#F6CD6E", "#D1D5DB"]
+chartSequentialColors = ["#FEF7E6", "#FCEBC2", "#FADC97", "#F7CD6B", "#F4BC3F", "#F1AB15", "#C98E0F", "#9E6F0B", "#5E4207", "#111111"]
+
+dataframeHeaderBackgroundColor = "#111111"
+dataframeHeaderTextColor = "#FFFFFF"
+dataframeBorderColor = "#E4DFD3"
+
+[theme.sidebar]
+backgroundColor = "#111111"
+secondaryBackgroundColor = "#1F1F1F"
+codeBackgroundColor = "#1F1F1F"
+textColor = "#FFFFFF"
+borderColor = "#333333"
+primaryColor = "#F1AB15"
+linkColor = "#F1AB15"

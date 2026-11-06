@@ -4,7 +4,7 @@ import streamlit as st
 # Configure the application
 st.set_page_config(
     page_title="Bank Chatbot Evaluation Platform",
-    page_icon="🤖",
+    page_icon=":material/smart_toy:",
     layout="wide",
 )
 
