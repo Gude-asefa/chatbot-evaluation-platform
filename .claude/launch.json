@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "chatbot-eval",
+      "runtimeExecutable": "venv/Scripts/streamlit.exe",
+      "runtimeArgs": ["run", "run.py", "--server.port", "8510", "--server.headless", "true"],
+      "port": 8510,
+      "autoPort": false
+    }
+  ]
+}
