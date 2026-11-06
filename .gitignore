@@ -1,0 +1,19 @@
+# Environment and secrets
+.env
+.env.*
+
+# Python environment
+venv/
+__pycache__/
+*.pyc
+
+# Generated reports and local data
+exports/
+data/
+
+# Local database files
+*.db
+*.sqlite3
+
+# IDE files
+.vscode/
