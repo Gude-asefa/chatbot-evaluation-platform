@@ -7,6 +7,12 @@
       "runtimeArgs": ["run", "run.py", "--server.port", "8510", "--server.headless", "true"],
       "port": 8510,
       "autoPort": false
+    },
+    {
+      "name": "nextjs-app",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "nextjs-app", "run", "dev:corp", "--", "--port", "3010"],
+      "port": 3010
     }
   ]
 }
